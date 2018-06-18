@@ -56,13 +56,6 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
-        <!-- Twitter API -->
-        <!--<dependency>-->
-        <!--<groupId>org.twitter4j</groupId>-->
-        <!--<artifactId>twitter4j-core</artifactId>-->
-        <!--<version>[4.0,)</version>-->
-        <!--</dependency>-->
-
         <!-- Spring Social Twitter API -->
         <dependency>
             <groupId>org.springframework.social</groupId>
