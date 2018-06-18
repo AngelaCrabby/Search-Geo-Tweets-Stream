@@ -3,6 +3,7 @@ package demo.controller;
 import demo.domain.Tweeter;
 import demo.domain.TweeterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Metrics;
 import org.springframework.data.geo.Point;
@@ -25,7 +26,7 @@ public class GeoTweeterController {
         return (List<Tweeter>) tweeterRepository.findAll();
     }
 
-    // http://localhost:10000/purge
+    // Postman, Delete : http://localhost:10000/purge
     @RequestMapping(value = "/purge", method = RequestMethod.DELETE)
     public void deleteAll() {
         tweeterRepository.deleteAll();
@@ -38,7 +39,9 @@ public class GeoTweeterController {
                                 @PathVariable(value = "radius") int radius) {
         Point point = new Point(longitude, latitude);
         Distance distance = new Distance(radius, Metrics.MILES);
+        Sort sort = new Sort(Sort.Direction.DESC, "timestamp_ms");
 
-        return tweeterRepository.findByPointNear(point, distance);
+        //return tweeterRepository.findByPointNear(point, distance);
+        return tweeterRepository.findByPointNear(point, distance, sort);
     }
 }
