@@ -7,7 +7,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
+import org.springframework.data.geo.Point;
 import org.springframework.data.mongodb.core.index.GeoSpatialIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -26,7 +26,7 @@ public class Tweeter {
     private String text;
     private Date timestamp_ms;
 
-    @Transient  // not include into MongoDB
+    //@Transient  // not include into MongoDB
     private Position coordinates;   // longitude, latitude
 
     private Place place;    // include polygon
@@ -34,6 +34,15 @@ public class Tweeter {
 
     @GeoSpatialIndexed   // mark GeoSpatial data index in MongoDB
     @JsonIgnore // no a field call geoPoint in JSON Sting
-    private GeoPoint geoPoint = new GeoPoint(0.0, 0.0);
+    private Point point = new Point(0.0, 0.0); // Point(longitude, latitude)
+
+
+    public double getLongitude() {
+        return point.getX();
+    }
+
+    public double getLatitude() {
+        return point.getY();
+    }
 
 }

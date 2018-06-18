@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
-/** !!! All the method under this controller, must return a dynamic page*/
+/**
+ * Twitter REST api example
+ * !!! All the method under this controller, must return a dynamic page
+ */
 @Controller   // for dynamic page return
 @Slf4j
 public class HelloController {
@@ -29,7 +32,7 @@ public class HelloController {
     }
 
     // http://localhost:10000
-    @RequestMapping(value = "/", method= RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String helloTwitter(Model model) {
 //        if (connectionRepository.findPrimaryConnection(Twitter.class) == null) {
 //            // http://localhost:10000/connect/twitter
@@ -44,7 +47,7 @@ public class HelloController {
     }
 
     // http://localhost:10000/list
-    @RequestMapping(value = "/list", method= RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String helloTwitter2(Model model) {
         List<Tweet> tweets = twitter.searchOperations().search("artificial intelligence", 3).getTweets();
 

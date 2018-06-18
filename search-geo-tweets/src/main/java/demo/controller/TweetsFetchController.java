@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/** !!! All the method under this controller, return json or String */
+/**
+ * Twitter REST api - search example
+ * !!! All the method under this controller, return json or String
+ */
 @RestController
 public class TweetsFetchController {
-
 
     private Twitter twitter;
 

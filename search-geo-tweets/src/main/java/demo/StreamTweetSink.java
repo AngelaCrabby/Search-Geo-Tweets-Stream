@@ -35,7 +35,7 @@ public class StreamTweetSink {
         Tweeter tweeter = this.objectMapper.readValue(input, Tweeter.class);
         streamService.updateGeoPoint(tweeter);
 
-        //log.info("Tweeter " + tweeter.toString());
-        log.info("Saved to MongoDB Tweeter" + repository.save(tweeter).toString());
+        repository.save(tweeter);
+        log.info("Saved to MongoDB Tweeter " + tweeter.toString());
     }
 }
