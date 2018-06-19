@@ -1,10 +1,9 @@
 from __future__ import absolute_import, print_function
 
-from tweepy.streaming import StreamListener
+import pika  # for RabbitMQ
 from tweepy import OAuthHandler
 from tweepy import Stream
-
-import pika   # for RabbitMQ
+from tweepy.streaming import StreamListener
 
 # Go to http://apps.twitter.com and create an app.
 # The consumer key and secret will be generated for you after
@@ -48,10 +47,10 @@ if __name__ == '__main__':
     auth.set_access_token(access_token, access_token_secret)
 
     stream = Stream(auth, listener)
-    #stream.filter(track=['basketball'])   # filter by keyword
+    # stream.filter(track=['basketball'])   # filter by keyword
 
     """ filter stream tweets by San Francisco OR New York City
         -122.75,36.8,-121.75,37.8 --> San Francisco
         -74,40,-73,41             --> New York City
     """
-    stream.filter(locations=[-122.75,36.8,-121.75,37.8,-74,40,-73,41])
+    stream.filter(locations=[-122.75, 36.8, -121.75, 37.8, -74, 40, -73, 41])

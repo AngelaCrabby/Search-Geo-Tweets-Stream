@@ -21,6 +21,9 @@ public class StreamServiceImpl implements StreamService {
         if (tweeter.getCoordinates() != null) { // hasGeo
             List<Double> position = tweeter.getCoordinates().getCoordinates();
             tweeter.setPoint(new Point(position.get(0), position.get(1)));
+
+            double[] location = new double[]{position.get(0), position.get(1)};
+            tweeter.setLocation(location);
         } else { // Geo = mid point of its polygon
             List<List<Double>> points = tweeter.getPlace().getBounding_box().getCoordinates().get(0);
 
@@ -32,6 +35,9 @@ public class StreamServiceImpl implements StreamService {
             latitude = latitude / 4;
 
             tweeter.setPoint(new Point(doubleFormat(longitude), doubleFormat(latitude)));
+
+            double[] location = new double[]{doubleFormat(longitude), doubleFormat(latitude)};
+            tweeter.setLocation(location);
         }
 
     }
