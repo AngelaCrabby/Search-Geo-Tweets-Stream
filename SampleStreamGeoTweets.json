@@ -1,0 +1,47 @@
+[
+  {
+    "timestamp_ms": 1529437232793,
+    "id": "1009159013710196736",
+    "text": "@DAYLEE Yup. And lots of dogs look like a banned breed but aren't. And even if they were?  It's still ridiculous le… https://t.co/rOCGs4nVZ8",
+    "place": {
+      "name": "Fremont",
+      "full_name": "Fremont, CA",
+      "country": "United States",
+      "bounding_box": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.069956,
+              37.454962
+            ],
+            [
+              -122.069956,
+              37.592327
+            ],
+            [
+              -121.889098,
+              37.592327
+            ],
+            [
+              -121.889098,
+              37.454962
+            ]
+          ]
+        ]
+      },
+      "id": "30344aecffe6a491",
+      "place_type": "city",
+      "country_code": "US"
+    },
+    "entities": {
+      "hashtags": []
+    },
+    "location": [
+      -121.979527,
+      37.523645
+    ],
+    "longitude": -121.979527,
+    "latitude": 37.523645
+  }
+]
