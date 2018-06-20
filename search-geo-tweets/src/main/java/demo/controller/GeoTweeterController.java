@@ -19,6 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**        GeoTweets REST api,
+ *  1. find all GeoTweets in MongoDB
+ *  2. delete all GeoTweets in MongoDB
+ *  3. Geo-spacial search Top 250 GeoTweets, based on lat/long, radius
+ *  4. Text indexes search GeoTweets, based on keyword
+ *  5. Geo-spacial + Text search Top 250 GeoTweets, based on lat/long, radius, keyword
+ * */
+
 @RestController
 @Slf4j
 public class GeoTweeterController {

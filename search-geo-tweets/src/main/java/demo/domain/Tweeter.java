@@ -31,10 +31,8 @@ public class Tweeter {
     private Date timestamp_ms;
 
     //@Transient  // not include into MongoDB
-    //private Position coordinates;   // longitude, latitude
-    private GeoJsonPoint coordinates;
-    private double[] location; // {longitude, latitude}; To find locations within a Circle
-
+    private GeoJsonPoint coordinates; // longitude, latitude, if GeoEnable
+    private double[] location; // {longitude, latitude}; To find locations within a Circle, not workable
     private Place place;    // include polygon
     private Entities entities;  // include hashtags
 
