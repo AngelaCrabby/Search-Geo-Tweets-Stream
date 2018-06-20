@@ -2,6 +2,7 @@ package demo.controller;
 
 import demo.domain.Tweeter;
 import demo.domain.TweeterRepository;
+import demo.service.TweeterService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -22,8 +23,14 @@ import java.util.List;
 @Slf4j
 public class GeoTweeterController {
 
-    @Autowired
     private TweeterRepository tweeterRepository;
+    private TweeterService tweeterService;
+
+    @Autowired
+    public GeoTweeterController(TweeterRepository tweeterRepository, TweeterService tweeterService) {
+        this.tweeterRepository = tweeterRepository;
+        this.tweeterService = tweeterService;
+    }
 
     // http://localhost:10000/all
     @RequestMapping(value = "/all", method = RequestMethod.GET)
@@ -67,18 +74,16 @@ public class GeoTweeterController {
 
         log.info("geo & test: " + longitude + " " + latitude + " " + radius + " " + keyword);
 
-        Point point = new Point(longitude, latitude);
+        Point center = new Point(longitude, latitude);
         Distance distance = new Distance(radius, Metrics.MILES);
-        Circle circle = new Circle(point, distance);
+        Circle circle = new Circle(center, distance);
         Sort sort = new Sort(Sort.Direction.DESC, "timestamp_ms");
         LimitOperation limit = new LimitOperation(250);
-        TextCriteria criteria = TextCriteria.forDefaultLanguage().matchingAny(keyword);
-        // tweeterRepository.findByLocationWithin(circle, criteria); // --- not workable
+//        TextCriteria criteria = TextCriteria.forDefaultLanguage().matchingAny(keyword);
+//        tweeterRepository.findByLocationWithin(circle, criteria); // --- not workable
 
-        List<Tweeter> tweeters = tweeterRepository.findByPointNear(point, distance, sort, limit);
-        // sort by text.subString(keyword);
-
-        return tweeters;
+        List<Tweeter> tweeters = tweeterRepository.findByPointNear(center, distance, sort, limit);
+        return tweeterService.filterTextByKeyword(tweeters, keyword);
     }
 
 }
